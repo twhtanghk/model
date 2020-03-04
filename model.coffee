@@ -152,4 +152,4 @@ class Model
     opts = _.defaults opts, url: "#{@baseUrl}/#{opts.data[@idAttribute]}"
     await @del opts
 
-export default Model
+export default {Model}
