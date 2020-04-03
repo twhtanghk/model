@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/twhtanghk/model#readme",
   "dependencies": {
+    "@mdi/js": "^5.0.45",
     "coffeescript": "^2.5.1",
     "lodash": "^4.17.15"
   }
