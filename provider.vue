@@ -13,9 +13,11 @@
         </v-card-title>
 
         <v-card-text>
-          <v-icon v-for='(provider, i) in providers' :key='i'>
-            {{icon[provider]}}
-          </v-icon>
+          <v-btn icon small color='blue' v-for='(provider, i) in providers' :key='i' @click='provider.authorization()'>
+            <v-icon>
+              {{provider.icon}}
+            </v-icon>
+          </v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -25,19 +27,19 @@
 <script lang='coffee'>
 import {mdiGoogle, mdiGithub} from '@mdi/js'
 {providers} = require('./oauth2.coffee').default
+for k,v of providers
+  switch k
+    when 'google'
+      providers[k].icon = mdiGoogle
+    when 'github'
+      providers[k].icon = mdiGithub
  
 export default
   props:
     dialog:
       type: Boolean
-    providers: 
-      type: Array
-      default: ->
-        Object.keys providers
   data: ->
-    icon:
-      google: mdiGoogle
-      github: mdiGithub
+    providers: providers
   computed:
     visible:
       get: ->
