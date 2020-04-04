@@ -26,7 +26,7 @@
 
 <script lang='coffee'>
 import {mdiGoogle, mdiGithub} from '@mdi/js'
-{providers} = require('./oauth2.coffee').default
+{providers} = require './oauth2.coffee'
 for k,v of providers
   switch k
     when 'google'
