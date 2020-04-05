@@ -41,11 +41,10 @@ class OAuth2
     new URLSearchParams body
 
   email: (token) ->
-    console.log token
-    await request 'get', @url.user, {},
+    {body} = await request 'get', @url.user, {},
       headers:
         Authorization: "Bearer #{token}"
-      json: true
+    body
 
 class Github extends OAuth2
   constructor: ({url, client, scope} = {}) ->
@@ -69,7 +68,7 @@ class Google extends OAuth2
         auth: process.env.GOOGLE_AUTH_URL || 'https://accounts.google.com/o/oauth2/v2/auth'
         token: process.env.GOOGLE_TOKEN_URL || 'https://oauth2.googleapis.com/token'
         cb: process.env.GOOGLE_CB_URL
-        user: process.env.GOOGLE_USER_URL || 'https://www.googleapis.com/plus/v1/people/me'
+        user: process.env.GOOGLE_USER_URL || 'https://www.googleapis.com/oauth2/v1/tokeninfo'
       client:
         id: process.env.GOOGLE_CLIENT_ID
         secret: process.env.GOOGLE_CLIENT_SECRET
