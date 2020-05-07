@@ -105,9 +105,7 @@ class Model
   iterPage: (opts = {}) ->
     skip = 0
     while true
-      opts = _.defaultsDeep opts,
-        data:
-          skip: skip
+      opts = _.defaultsDeep data: skip: skip, opts
       page = await @list opts
       skip += page.length
       if page.length == 0
